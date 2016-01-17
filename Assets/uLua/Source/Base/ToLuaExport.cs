@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2014.9 , 蒙占志 (Zhanzhi Meng) topameng@gmail.com
  * All rights reserved.
  * Use, modification and distribution are subject to the "New BSD License"
@@ -234,7 +234,7 @@ public static class ToLuaExport
             GenEnum();
             GenEnumTranslator();
             sb.AppendLine("}\r\n");
-            SaveFile(AppConst.uLuaPath + "/Source/LuaWrap/" + wrapClassName + "Wrap.cs");
+            SaveFile(LuaConfig.uLuaPath + "/Source/LuaWrap/" + wrapClassName + "Wrap.cs");
             return;
         }
 
@@ -316,7 +316,7 @@ public static class ToLuaExport
 
         sb.AppendLine("}\r\n");
         //Debugger.Log(sb.ToString());
-        string path = AppConst.uLuaPath + "/Source/LuaWrap/";
+        string path = LuaConfig.uLuaPath + "/Source/LuaWrap/";
         if (!Directory.Exists(path)) {
             Directory.CreateDirectory(path);
         }
@@ -2815,7 +2815,7 @@ public static class ToLuaExport
         sb.AppendLine("\t}\r\n");
 
         sb.AppendLine("}");
-        SaveFile(AppConst.uLuaPath + "/Source/Base/DelegateFactory.cs");
+        SaveFile(LuaConfig.uLuaPath + "/Source/Base/DelegateFactory.cs");
 
         Clear();
     }

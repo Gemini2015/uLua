@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 
@@ -14,19 +14,13 @@ public static class WrapFile {
         _GT(typeof(Type)).SetBaseName("System.Object"),                                                     
         _GT(typeof(UnityEngine.Object)),
         
-        //测试模板
-        ////_GT(typeof(Dictionary<int,string>)).SetWrapName("DictInt2Str").SetLibName("DictInt2Str"),
         
         //custom    
 		_GT(typeof(WWW)),
 		_GT(typeof(Util)),
-		_GT(typeof(AppConst)),
-        _GT(typeof(LuaEnumType)),
+		_GT(typeof(LuaConfig)),
         _GT(typeof(Debugger)),
         _GT(typeof(DelegateFactory)),
-        _GT(typeof(TestLuaDelegate)),
-        _GT(typeof(TestDelegateListener)),
-        _GT(typeof(TestEventListener)),
         
         //unity                        
         _GT(typeof(Component)),
@@ -83,34 +77,7 @@ public static class WrapFile {
         _GT(typeof(Texture)),
         _GT(typeof(RenderTexture)),
         _GT(typeof(ParticleSystem)),
-        
-
-        //ngui
-        /*_GT(typeof(UICamera)),
-        _GT(typeof(Localization)),
-        _GT(typeof(NGUITools)),
-
-        _GT(typeof(UIRect)),
-        _GT(typeof(UIWidget)),        
-        _GT(typeof(UIWidgetContainer)),     
-        _GT(typeof(UILabel)),        
-        _GT(typeof(UIToggle)),
-        _GT(typeof(UIBasicSprite)),        
-        _GT(typeof(UITexture)),
-        _GT(typeof(UISprite)),           
-        _GT(typeof(UIProgressBar)),
-        _GT(typeof(UISlider)),
-        _GT(typeof(UIGrid)),
-        _GT(typeof(UIInput)),
-        _GT(typeof(UIScrollView)),
-        
-        _GT(typeof(UITweener)),
-        _GT(typeof(TweenWidth)),
-        _GT(typeof(TweenRotation)),
-        _GT(typeof(TweenPosition)),
-        _GT(typeof(TweenScale)),
-        _GT(typeof(UICenterOnChild)),    
-        _GT(typeof(UIAtlas)),*/         
+               
     };
 
     public static BindType _GT(Type t) {

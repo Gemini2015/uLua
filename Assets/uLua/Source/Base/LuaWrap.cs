@@ -76,12 +76,3 @@ public class LuaRef
         this.reference = reference;
     }
 }
-
-/*一个发送协议的例子结构*/
-public class MsgPacket
-{
-    public ushort id;
-    public int      seq;
-    public ushort   errno;        
-    public LuaStringBuffer data;   
-}

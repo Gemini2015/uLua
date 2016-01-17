@@ -16,7 +16,7 @@ public static class DelegateFactory
 		dict.Add(typeof(UnityEngine.Events.UnityAction), new DelegateValue(UnityEngine_Events_UnityAction));
 		dict.Add(typeof(System.Reflection.MemberFilter), new DelegateValue(System_Reflection_MemberFilter));
 		dict.Add(typeof(System.Reflection.TypeFilter), new DelegateValue(System_Reflection_TypeFilter));
-		dict.Add(typeof(TestLuaDelegate.VoidDelegate), new DelegateValue(TestLuaDelegate_VoidDelegate));
+		dict.Add(typeof(Camera.CameraCallback), new DelegateValue(Camera_CameraCallback));
 		dict.Add(typeof(AudioClip.PCMReaderCallback), new DelegateValue(AudioClip_PCMReaderCallback));
 		dict.Add(typeof(AudioClip.PCMSetPositionCallback), new DelegateValue(AudioClip_PCMSetPositionCallback));
 		dict.Add(typeof(Application.LogCallback), new DelegateValue(Application_LogCallback));
@@ -98,9 +98,9 @@ public static class DelegateFactory
 		return d;
 	}
 
-	public static Delegate TestLuaDelegate_VoidDelegate(LuaFunction func)
+	public static Delegate Camera_CameraCallback(LuaFunction func)
 	{
-		TestLuaDelegate.VoidDelegate d = (param0) =>
+		Camera.CameraCallback d = (param0) =>
 		{
 			int top = func.BeginPCall();
 			IntPtr L = func.GetLuaState();

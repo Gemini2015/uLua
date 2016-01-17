@@ -1,4 +1,4 @@
-﻿//#define MULTI_STATE
+//#define MULTI_STATE
 using System;
 using System.Collections.Generic;
 using LuaInterface;
@@ -190,20 +190,20 @@ public class LuaScriptMgr
 
 
         //LuaDLL.luaopen_pack(lua.L);
-        if (AppConst.UsePbLua) {
+        if (LuaConfig.UsePbLua) {
             LuaDLL.luaopen_pb(lua.L);
         }
-        if (AppConst.UsePbc) {
+        if (LuaConfig.UsePbc) {
             LuaDLL.luaopen_protobuf_c(lua.L);
         }
-        if (AppConst.UseLpeg) {
+        if (LuaConfig.UseLpeg) {
             LuaDLL.luaopen_lpeg(lua.L);
         }
-        if (AppConst.UseCJson) {
+        if (LuaConfig.UseCJson) {
             LuaDLL.luaopen_cjson(lua.L);
             LuaDLL.luaopen_cjson_safe(lua.L);
         }
-        if (AppConst.UseSproto) {
+        if (LuaConfig.UseSproto) {
             LuaDLL.luaopen_sproto_core(lua.L);
         }
         if (Application.platform == RuntimePlatform.IPhonePlayer || 
@@ -213,7 +213,7 @@ public class LuaScriptMgr
 #if UNITY_EDITOR
         LuaDLL.luaopen_socket_core(lua.L);
 #endif
-        if (AppConst.UseSproto) {
+        if (LuaConfig.UseSproto) {
             LuaDLL.luaopen_sproto_core(lua.L);
         }
         LuaDLL.tolua_openlibs(lua.L);

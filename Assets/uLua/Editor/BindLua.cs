@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System;
 using System.Collections;
@@ -111,31 +111,7 @@ public static class LuaBinding
 {
     static bool beAutoGen = false;
 
-    //static LuaBinding()
-    //{        
-    //    string dir = Application.dataPath + "/Source/LuaWrap/";
-
-    //    if (!Directory.Exists(dir))
-    //    {
-    //        Directory.CreateDirectory(dir);
-    //    }
-        
-    //    string[] files = Directory.GetFiles(dir);
-
-    //    if (files.Length <= 0)
-    //    {
-    //        if (EditorUtility.DisplayDialog("自动生成", "点击确定自动注册常用unity类和委托， 也可通过菜单完成此功能", "确定", "取消"))
-    //        {
-    //            beAutoGen = true;
-    //            Binding();
-    //            GenLuaDelegates();
-    //            GenLuaBinder();
-    //            beAutoGen = false;
-    //        }
-    //    }
-    //}
-
-    [MenuItem("Lua/Gen Lua Wrap Files", false, 11)]
+    [MenuItem("Lua/Gen Lua Wrap Files", false, 1)]
     public static void Binding()
     {
         if (!Application.isPlaying)
@@ -165,12 +141,6 @@ public static class LuaBinding
         }
 
         EditorApplication.isPlaying = false;
-        //StringBuilder sb1 = new StringBuilder();
-
-        //for (int i = 0; i < binds.Length; i++)
-        //{
-        //    sb1.AppendFormat("\t\t{0}Wrap.Register(L);\r\n", binds[i].wrapName);
-        //}
 
         GenLuaBinder();
         GenLuaDelegates();
@@ -206,7 +176,7 @@ public static class LuaBinding
             string wrapfile = wrapName.Substring(0, wrapName.Length - 4);
             wrapfiles.Add("import '" + wrapfile + "'");
         }
-        if (AppConst.AutoWrapMode) {
+        if (LuaConfig.AutoWrapMode) {
             string wrapfile = Application.dataPath + "/uLua/Lua/System/Wrap.lua";
             File.WriteAllLines(wrapfile, wrapfiles.ToArray());
         }
@@ -214,7 +184,7 @@ public static class LuaBinding
         sb.AppendLine("\t}");
         sb.AppendLine("}");
 
-        string file = AppConst.uLuaPath + "/Source/Base/LuaBinder.cs";
+        string file = LuaConfig.uLuaPath + "/Source/Base/LuaBinder.cs";
 
         using (StreamWriter textWriter = new StreamWriter(file, false, Encoding.UTF8))
         {
@@ -239,7 +209,7 @@ public static class LuaBinding
         sb.AppendLine("\t}");
         sb.AppendLine("}");
 
-        string file = AppConst.uLuaPath + "/Source/Base/LuaBinder.cs";
+        string file = LuaConfig.uLuaPath + "/Source/Base/LuaBinder.cs";
 
         using (StreamWriter textWriter = new StreamWriter(file, false, Encoding.UTF8))
         {
@@ -247,11 +217,11 @@ public static class LuaBinding
             textWriter.Flush();
             textWriter.Close();
         }
-        if (AppConst.AutoWrapMode) {
+        if (LuaConfig.AutoWrapMode) {
             string wrapfile = Application.dataPath + "/uLua/Lua/System/Wrap.lua";
             File.WriteAllText(wrapfile, string.Empty);
         }
-        ClearFiles(AppConst.uLuaPath + "/Source/LuaWrap/");
+        ClearFiles(LuaConfig.uLuaPath + "/Source/LuaWrap/");
         AssetDatabase.Refresh();
     }
 
@@ -352,8 +322,7 @@ public static class LuaBinding
             _DT(typeof(UnityEngine.Events.UnityAction)),                     
         });
 
-        HashSet<Type> set = beAutoGen ? ToLuaExport.eventSet : GetCustomDelegateTypes();                
-        List<Type> typeList = new List<Type>();
+        HashSet<Type> set = beAutoGen ? ToLuaExport.eventSet : GetCustomDelegateTypes();
 
         foreach (Type t in set)
         {
@@ -409,7 +378,7 @@ public static class LuaBinding
 
     static void BuildLuaBundle(string dir)
     {
-        BuildAssetBundleOptions options = BuildAssetBundleOptions.CollectDependencies | BuildAssetBundleOptions.CompleteAssets | BuildAssetBundleOptions.DeterministicAssetBundle;
+        BuildAssetBundleOptions options = BuildAssetBundleOptions.DeterministicAssetBundle;
 
         string[] files = Directory.GetFiles("Assets/Lua/Out/" + dir, "*.lua.bytes");
         List<Object> list = new List<Object>();

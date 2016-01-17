@@ -15,7 +15,6 @@ require("mobdebug").start()
 debugger = {};
 local this = debugger;
 
-require "Logic/LuaClass"
 require "Common/functions"
 
 function debugger.Awake()
